@@ -11,6 +11,10 @@ module.exports = {
 				use: "ts-loader",
 			},
 			{
+				test: /\.css$/,
+				use: ["style-loader", "css-loader"],
+			},
+			{
 				test: /\.(png|svg|jpg|gif)$/,
 				use: ["file-loader"],
 			},
