@@ -1,0 +1,11 @@
+{
+	"include": ["src/**/*"],
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"target": "es6",
+		"noImplicitAny": true,
+		"allowJs": false,
+		"removeComments": true,
+		"experimentalDecorators": true
+	}
+}
