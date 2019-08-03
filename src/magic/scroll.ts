@@ -5,7 +5,7 @@ enum Targets {
 	mouse_proj,
 	mouse_cone,
 	mouse_area,
-	next_card
+	deck
 }
 
 enum Symbols {
@@ -23,7 +23,16 @@ enum Stats {
 	attack,
 	power,
 	range,
-	speed
+	speed,
+	duration
+}
+
+enum Colors {
+	red, 
+	blue,
+	green,
+	white,
+	purple
 }
 
 export class Scroll {
@@ -37,8 +46,6 @@ export class Scroll {
 	symbol: Symbols;
 
 	//Spell type
-	instant: boolean;
-	target: Targets;
 	stat: Stats;
 	power: number;
 	range: number;
@@ -53,22 +60,15 @@ export class Effect {
 	//Spell identifiers
 	symbol: Symbols;
 	stat: Stats;
-	instant: boolean;
 	power: number;
 
 	//Running time
 	duration: number;
-	
+
 	constructor(scroll: Scroll) {
 		this.symbol = scroll.symbol;
 		this.stat = scroll.stat;
 		this.power = scroll.power;
-		this.instant = scroll.instant;
-
-		if(this.instant == true) {
-			this.duration = 1;
-		} else {
-			this.duration = 60;
-		}
+		this.duration = 60;
 	}
 }
