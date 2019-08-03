@@ -12,7 +12,6 @@ const app = new Application({
     resolution: 1,
     antialias: false,
 });
-document.body.appendChild(app.view); // Inject it
 
 Loader.shared
     .add(["res/sprite/adventurer.json"])
@@ -27,6 +26,7 @@ Loader.shared
 
 function main(loader: Loader, resources: IResourceDictionary) {
     console.log("All resources loaded.");
+    document.body.appendChild(app.view); // Inject the Pixi view manager
 
     app.stage.interactive = true;
 
