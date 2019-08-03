@@ -2,7 +2,7 @@ import { Sprite, Text, Container } from "pixi.js";
 
 export default interface Gui {
     doClick(event: PointerEvent): void;
-    sprites(): Sprite[];
+    sprites(): Array<Sprite>;
 }
 
 export class Button implements Gui {
