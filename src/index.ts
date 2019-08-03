@@ -4,36 +4,38 @@ import "./main.css";
 import { World } from "./world";
 
 const app = new Application({
-	// Create the Pixi base
-	resizeTo: window,
-	resolution: 1,
-	antialias: false,
+    // Create the Pixi base
+    resizeTo: window,
+    resolution: 1,
+    antialias: false
 });
 document.body.appendChild(app.view); // Inject it
 
 Loader.shared
-	.add([
-		require("../res/sprite/adventurer-idle-00.png"), // must use webpack require
-	])
-	.on("start", () => {
-		console.log("Loading...");
-	})
-	.on("progress", (loader, resource) => {
-		console.log(`Loaded ${resource.name} (${loader.progress}%)`);
-	})
-	.on("complete", main)
-	.load();
+    .add([
+        require("../res/sprite/adventurer-idle-00.png") // must use webpack require
+    ])
+    .on("start", () => {
+        console.log("Loading...");
+    })
+    .on("progress", (loader, resource) => {
+        console.log(`Loaded ${resource.name} (${loader.progress}%)`);
+    })
+    .on("complete", main)
+    .load();
 
 function main(loader: Loader, obj: IResourceDictionary) {
-	console.log("All resources loaded.");
-	console.log(obj);
+    console.log("All resources loaded.");
+    console.log(obj);
 
-	let world = new World(app.stage);
+    let world = new World(app.stage);
 
-	let adventurer = new Entity(new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture)); //create sprite
-	// adventurer.alpha = 0; // make it invisible
+    let adventurer = new Entity(
+        new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture)
+    ); //create sprite
+    // adventurer.alpha = 0; // make it invisible
 
-	world.addEntity(adventurer); // add it to the stage
+    world.addEntity(adventurer); // add it to the stage
 
-	adventurer.move(6, 50);
+    adventurer.move(6, 50);
 }
