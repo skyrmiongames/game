@@ -40,7 +40,7 @@ function main(loader: Loader, resources: IResourceDictionary) {
 
     app.stage = world; // make the world active
 
-    app.ticker.add(delta => {
+    app.ticker.add((delta: number) => {
         // Animation loop
     });
 }
