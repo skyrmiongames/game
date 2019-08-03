@@ -1,10 +1,10 @@
 import "core-js";
 import { Application, IResourceDictionary, Loader, Sprite } from "pixi.js";
 import { Entity } from "./entity";
+import { addGui } from "./gui";
+import { mainMenu } from "./gui/mainmenu";
 import "./main.css";
 import { World } from "./world";
-import { mainMenu } from "./gui/mainmenu";
-import { addGui } from "./gui";
 
 const app = new Application({
     // Create the Pixi base
