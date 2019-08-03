@@ -39,4 +39,8 @@ function main(loader: Loader, resources: IResourceDictionary) {
     world.addEntity(adventurer); // add it to the stage
 
     app.stage = world; // make the world active
+
+    app.ticker.add(delta => {
+        // Animation loop
+    });
 }
