@@ -1,39 +1,10 @@
-enum Targets {
-	self,
-	self_area,
-	mouse_enemy,
-	mouse_proj,
-	mouse_cone,
-	mouse_area,
-	deck
-}
+import { parse } from 'papaparse';
+import { readFileSync } from 'fs';
+import { Targets, Symbols, Stats } from './enums';
 
-enum Symbols {
-	sword,
-	plus,
-	sheild,
-	potion,
-	flame,
-	waves,
-	flake
-}
-
-enum Stats {
-	health,
-	attack,
-	power,
-	range,
-	speed,
-	duration
-}
-
-enum Colors {
-	red, 
-	blue,
-	green,
-	white,
-	purple
-}
+const file = readFileSync('./magic/spells.csv', 'utf8');
+var scrolls: Scroll;
+parse(file, {complete: (result) => scrolls});
 
 export class Scroll {
 	//Identifier
@@ -43,6 +14,7 @@ export class Scroll {
 
 	//Scroll display
 	level: number;
+	target: Targets;
 	symbol: Symbols;
 
 	//Spell type
