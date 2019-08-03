@@ -1,4 +1,4 @@
-import { Sprite, Text } from "pixi.js";
+import { Sprite, Text, Container } from "pixi.js";
 
 export interface Gui {
     doClick(event: PointerEvent): void;
@@ -15,12 +15,8 @@ export class Button implements Gui {
     }
 
     doClick(event: PointerEvent): void {
-        let x = this.text.x;
-        let y = this.text.y;
-        let width = this.text.width;
-        let height = this.text.height;
-        if (x <= event.clientX && event.clientX <= x + width) {
-            if (y <= event.clientY && event.clientY <= y + height) {
+        if (this.text.x <= event.clientX && event.clientX <= this.text.x +  this.text.width) {
+            if (this.text.y <= event.clientY && event.clientY <= this.text.y + this.text.height) {
                 this.onClick();
             }
         }
@@ -39,10 +35,20 @@ export class Group implements Gui {
     }
 
     doClick(event: PointerEvent): void {
-        this.children.forEach((child) => child.doClick(event));
+        this.children.forEach(child => child.doClick(event));
     }
 
     sprites(): Sprite[] {
-        return this.children.map((child) => child.sprites()).flat();
+        return this.children.map(child => child.sprites()).flat();
     }
+}
+
+export const addGui = (gui: Gui, container: Container) => {
+    gui.sprites().forEach(child => container.addChild(child));
+
+    container.on("mousedown", (e: any) => {
+        const event: PointerEvent = e.data.originalEvent;
+        console.log(`Clicked x=${event.clientX} y=${event.clientY}`);
+        gui.doClick(event);
+    });
 }
