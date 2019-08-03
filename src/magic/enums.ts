@@ -5,7 +5,7 @@ export enum Targets {
 	mouse_proj,
 	mouse_cone,
 	mouse_area,
-	deck
+	deck,
 }
 
 export enum Symbols {
@@ -15,7 +15,7 @@ export enum Symbols {
 	potion,
 	flame,
 	waves,
-	flake
+	flake,
 }
 
 export enum Stats {
@@ -24,13 +24,13 @@ export enum Stats {
 	power,
 	range,
 	speed,
-	duration
+	duration,
 }
 
 export enum Colors {
-	red, 
+	red,
 	blue,
 	green,
 	white,
-	purple
+	purple,
 }

@@ -4,16 +4,17 @@ import { v4 } from "uuid";
 import { Targets, Symbols, Stats } from "./enums";
 
 var scrolls: {
-    [key: string]: ScrollData;
+	[key: string]: ScrollData;
 };
 
 //Convert csv into scroll map
-const file = readFileSync('src/magic/spells.csv', 'utf8');
-parse(file, { 
-	complete: (result) => scrolls = result.data.reduce(function(map, obj) {
-	    map[obj.name] = obj;
-	    return map;
-	}, {})
+const file = readFileSync("src/magic/spells.csv", "utf8");
+parse(file, {
+	complete: result =>
+		(scrolls = result.data.reduce(function(map, obj) {
+			map[obj.name] = obj;
+			return map;
+		}, {})),
 });
 
 export class ScrollData {

@@ -1,5 +1,5 @@
 import { Sprite, Texture, IResourceDictionary } from "pixi.js";
-import { ScrollData } from "./magic/data.ts"
+import { ScrollData } from "./magic/data.ts";
 
 export class ScrollEntity extends Sprite {
 	id: string;
