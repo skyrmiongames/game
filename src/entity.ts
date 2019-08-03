@@ -4,11 +4,22 @@ import { v4 } from "uuid";
 export type AnimationState = "idle" | "attack" | "cast" | "die" | "fall" | "hurt" | "jump" | "run";
 
 export class Entity extends Container {
-    id: string;
+    readonly id: string;
     health: number = 10;
     attack: number = 5;
     speed: number = 3; // units per frame
-    animationstate: AnimationState;
+
+    // intelligently control the animation state
+    private _animationstate: AnimationState = "idle";
+    set animationstate(to: AnimationState) {
+        this.sprites[this.animationstate].visible = false;
+        this._animationstate = to;
+        this.sprites[this.animationstate].visible = true;
+    }
+    get animationstate() {
+        return this._animationstate;
+    }
+
     sprites: {
         [key in AnimationState]?: AnimatedSprite;
     };
@@ -34,7 +45,6 @@ export class Entity extends Container {
         });
 
         this.animationstate = "run";
-        this.sprites[this.animationstate].visible = true;
     }
 
     move(angle: number, distance: number = this.speed) {
