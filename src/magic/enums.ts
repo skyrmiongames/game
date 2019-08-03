@@ -34,3 +34,12 @@ export enum Colors {
 	white,
 	purple,
 }
+
+export enum States {
+	world,
+	deck,
+	hand,
+	mouse,
+	self,
+	enemy
+}

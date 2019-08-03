@@ -21,6 +21,7 @@ const app = new Application({
 
 Loader.shared
     .add(["res/sprite/adventurer.json"])
+    .add(["res/text/spells.csv"])
     .on("start", () => {
         console.log("Loading...");
     })

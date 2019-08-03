@@ -1,20 +1,21 @@
 import { parse } from "papaparse";
-import { readFileSync } from "fs";
 import { v4 } from "uuid";
 import { Targets, Symbols, Stats } from "./enums";
 
-var scrolls: {
+export var scrolls: {
 	[key: string]: ScrollData;
 };
 
 //Convert csv into scroll map
-const file = readFileSync("src/magic/spells.csv", "utf8");
-parse(file, {
+parse("res/text/spells.csv", {
 	complete: result =>
 		(scrolls = result.data.reduce(function(map, obj) {
 			map[obj.name] = obj;
 			return map;
 		}, {})),
+	download: true,
+	delimiter: ",",
+	header: true,
 });
 
 export class ScrollData {
@@ -36,21 +37,4 @@ export class ScrollData {
 	speed: number;
 	color: string;
 	density: number;
-}
-
-export class Effect {
-	//Spell identifiers
-	symbol: Symbols;
-	stat: Stats;
-	power: number;
-
-	//Running time
-	duration: number;
-
-	constructor(scroll: ScrollData) {
-		this.symbol = scroll.symbol;
-		this.stat = scroll.stat;
-		this.power = scroll.power;
-		this.duration = 60;
-	}
 }
