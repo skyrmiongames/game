@@ -2,6 +2,7 @@ import { Application, IResourceDictionary, Loader, Sprite } from "pixi.js";
 import { Entity } from "./entity";
 import "./main.css";
 import { World } from "./world";
+import { addMainMenu } from "./mainmenu";
 
 const app = new Application({
     // Create the Pixi base
@@ -28,7 +29,9 @@ function main(loader: Loader, obj: IResourceDictionary) {
     console.log("All resources loaded.");
     console.log(obj);
 
-    let world = new World();
+    app.stage.interactive = true;
+
+    let world = new World(app.stage);
 
     let adventurer = new Entity(
         new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture)

@@ -7,10 +7,14 @@ export class World {
         [key: string]: Entity;
     };
 
+    constructor(stage: Container) {
+        this.stage = stage;
+        this.entities = {};
+    }
+
     addEntity(entity: Entity) {
         this.entities[entity.id] = entity;
         this.stage.addChild(entity.sprite);
-        entity.world = this;
     }
 
     checkTile(x: number, y: number) {}
