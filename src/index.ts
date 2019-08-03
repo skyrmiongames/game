@@ -27,10 +27,7 @@ const app = new Application({
 const hero = resourceLoader.load<SpritesheetSchema>("sprites.hero");
 
 Loader.shared
-    .add(["res/sprite/adventurer.json"])
-    .add(["res/sprite/scroll.png"])
-    .add(["res/text/spells.csv"])
-    .add([hero.framePath])
+    .add([hero.framePath, "res/sprite/scroll.png", "res/text/spells.csv"])
     .on("start", () => {
         console.log("Loading...");
     })
