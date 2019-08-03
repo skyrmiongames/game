@@ -1,5 +1,4 @@
 import { parse } from "papaparse";
-import { v4 } from "uuid";
 import { Targets, Symbols, Stats } from "./enums";
 
 export var scrolls: {
