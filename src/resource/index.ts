@@ -1,6 +1,6 @@
-import { MobSchema, EntitySchema, SpritesheetSchema } from "./schema";
 import { v4 } from "uuid";
 import { TileSetSchema } from "../world/tile";
+import { EntitySchema, SpritesheetSchema } from "./schema";
 
 export const uniqueID = v4;
 
