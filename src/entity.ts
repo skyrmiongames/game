@@ -45,7 +45,7 @@ export class Entity extends Container {
             this.sprites[name as AnimationState] = sprite;
         });
 
-        this.animationstate = "run";
+        this.animationstate = "idle";
     }
 
     speed = 0; // multiplied by runspeed to determine movement speed.
