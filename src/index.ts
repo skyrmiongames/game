@@ -6,7 +6,7 @@ document.body.appendChild(app.view); // Inject it
 
 Loader.shared
 	.add([
-		require("../res/sprite/core.png"), // must use webpack require
+		require("../res/sprite/adventurer-idle-00.png"), // must use webpack require
 	])
 	.on("start", () => {
 		console.log("Loading...");
@@ -21,8 +21,8 @@ function main(loader: Loader, obj: IResourceDictionary) {
 	console.log("All resources loaded.");
 	console.log(obj);
 
-	let core = new Sprite(obj[require("../res/sprite/core.png")].texture);
-	core.alpha = 0;
+	let adventurer = new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture); //create sprite
+	// adventurer.alpha = 0; // make it invisible
 
-	app.stage.addChild(core);
+	app.stage.addChild(adventurer); // add it to the stage
 }
