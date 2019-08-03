@@ -37,5 +37,5 @@ function main(loader: Loader, obj: IResourceDictionary) {
 
     world.addEntity(adventurer); // add it to the stage
 
-    adventurer.move(6, 50);
+    adventurer.move(6, 100);
 }
