@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":37},
 	"sourceSize": {"w":50,"h":37}
 },
-"attack2-02.png":
+"attack-02.png":
 {
 	"frame": {"x":100,"y":0,"w":50,"h":37},
 	"rotated": false,
@@ -24,7 +24,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":37},
 	"sourceSize": {"w":50,"h":37}
 },
-"attack2-03.png":
+"attack-03.png":
 {
 	"frame": {"x":150,"y":0,"w":50,"h":37},
 	"rotated": false,
@@ -32,7 +32,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":37},
 	"sourceSize": {"w":50,"h":37}
 },
-"attack2-04.png":
+"attack-04.png":
 {
 	"frame": {"x":200,"y":0,"w":50,"h":37},
 	"rotated": false,
@@ -40,7 +40,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":50,"h":37},
 	"sourceSize": {"w":50,"h":37}
 },
-"attack2-05.png":
+"attack-05.png":
 {
 	"frame": {"x":250,"y":0,"w":50,"h":37},
 	"rotated": false,
@@ -289,8 +289,7 @@
 	"sourceSize": {"w":50,"h":37}
 }},
 "animations": {
-	"attack": ["attack-00.png","attack-01.png"],
-	"attack2": ["attack2-02.png","attack2-03.png","attack2-04.png","attack2-05.png"],
+	"attack": ["attack-00.png","attack-01.png","attack-02.png","attack-03.png","attack-04.png","attack-05.png"],
 	"cast": ["cast-00.png","cast-01.png","cast-02.png","cast-03.png"],
 	"die": ["die-00.png","die-01.png","die-02.png","die-03.png","die-04.png","die-05.png","die-06.png"],
 	"fall": ["fall-00.png","fall-01.png"],
@@ -306,6 +305,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1800,"h":37},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:23b394d08e6b7839405c9d1cdd721f37:518f4f9b34cd3b317751b800c7f3b79b:932c9555d40b6febc8dc495067cbaa4d$"
+	"smartupdate": "$TexturePacker:SmartUpdate:271ba46f1e8277b7bb9de5b738985f77:518f4f9b34cd3b317751b800c7f3b79b:932c9555d40b6febc8dc495067cbaa4d$"
 }
 }
