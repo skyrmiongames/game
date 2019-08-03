@@ -42,5 +42,7 @@ function main(loader: Loader, resources: IResourceDictionary) {
 
     app.ticker.add((delta: number) => {
         // Animation loop
+
+        adventurer.move(0);
     });
 }
