@@ -7,7 +7,7 @@ export class Entity extends Container {
     readonly id: string;
     health: number = 10;
     attack: number = 5;
-    speed: number = 3; // units per frame
+    runspeed: number = 3; // units per frame
 
     // intelligently control the animation state
     private _animationstate: AnimationState = "idle";
@@ -25,7 +25,7 @@ export class Entity extends Container {
 
     constructor(
         texture: Spritesheet,
-        opts?: { health?: number; attack?: number; speed?: number; x?: number; y?: number }
+        opts?: { health?: number; attack?: number; runspeed?: number; x?: number; y?: number }
     ) {
         super();
         this.id = v4();
@@ -48,25 +48,20 @@ export class Entity extends Container {
         this.animationstate = "run";
     }
 
-    _velocity_speed = 0;
-    _velocity_angle = 0;
+    speed = 0; // multiplied by runspeed to determine movement speed.
+    angle = 0; // radians
     tick(delta: number) {
-        if (this._velocity_speed > 0 && this.animationstate == "idle") {
+        if (this.speed > 0 && this.animationstate == "idle") {
             this.animationstate = "run";
-        } else if (this._velocity_speed == 0 && this.animationstate == "run") {
+        } else if (this.speed == 0 && this.animationstate == "run") {
             this.animationstate = "idle";
         }
 
-        this.move(this._velocity_angle, delta * this.speed * this._velocity_speed);
+        this.move(this.angle, delta * this.runspeed * this.speed);
     }
 
-    set_velocity(angle: number, speed: number) {
-        this._velocity_speed = speed
-        this._velocity_angle = angle
-    }
-
-    move(angle: number, distance: number = this.speed) {
+    move(angle: number, distance: number = this.runspeed) {
         this.x += Math.cos(angle) * distance;
-        this.y += Math.sin(angle) * distance;
+        this.y += -Math.sin(angle) * distance;
     }
 }
