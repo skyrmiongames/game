@@ -1,22 +1,21 @@
-import { Sprite } from "pixi.js";
+import { Sprite, Texture } from "pixi.js";
 import { v4 } from "uuid";
 
-export class Entity {
+export class Entity extends Sprite {
     id: string;
-    sprite: Sprite;
-    health: number;
-    attack: number;
-    speed: number;
+    health: number = 10;
+    attack: number = 5;
+    speed: number = 20; // units per frame
 
-    constructor(sprite: Sprite, health: number = 10, attack: number = 5) {
+    constructor(texture: Texture, opts?: { health: number; attack: number; speed: number }) {
+        super(texture);
         this.id = v4();
-        this.sprite = sprite;
-        this.health = health;
-        this.attack = attack;
+
+        if (opts) Object.assign(this, opts);
     }
 
     move(angle: number, distance: number = this.speed) {
-        this.sprite.x += Math.cos(angle) * distance;
-        this.sprite.y += Math.sin(angle) * distance;
+        this.x += Math.cos(angle) * distance;
+        this.y += Math.sin(angle) * distance;
     }
 }

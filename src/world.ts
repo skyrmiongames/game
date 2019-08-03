@@ -14,7 +14,7 @@ export class World {
 
     addEntity(entity: Entity) {
         this.entities[entity.id] = entity;
-        this.stage.addChild(entity.sprite);
+        this.stage.addChild(entity);
     }
 
     checkTile(x: number, y: number) {}
