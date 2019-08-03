@@ -41,6 +41,7 @@ function main(loader: Loader, resources: IResourceDictionary) {
 
     let world = new World();
     let adventurer = new Entity(resources["res/sprite/adventurer.json"].spritesheet); //create sprite
+    adventurer.set_velocity(0, 1);
     world.addEntity(adventurer); // add it to the stage
 
     app.stage = world; // make the world active
@@ -48,6 +49,6 @@ function main(loader: Loader, resources: IResourceDictionary) {
     app.ticker.add((delta: number) => {
         // Animation loop
 
-        adventurer.move(0, adventurer.speed * delta);
+        adventurer.tick(delta);
     });
 }
