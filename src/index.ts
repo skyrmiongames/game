@@ -1,5 +1,8 @@
+import "core-js";
 import { Application, IResourceDictionary, Loader, Sprite } from "pixi.js";
 import { Entity } from "./entity";
+import { addGui } from "./gui";
+import { mainMenu } from "./gui/mainmenu";
 import "./main.css";
 import { World } from "./world";
 
@@ -28,14 +31,13 @@ function main(loader: Loader, obj: IResourceDictionary) {
     console.log("All resources loaded.");
     console.log(obj);
 
+    app.stage.interactive = true;
+
+    addGui(mainMenu, app.stage);
     let world = new World(app.stage);
 
-    let adventurer = new Entity(
-        new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture)
-    ); //create sprite
+    let adventurer = new Entity(new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture)); //create sprite
     // adventurer.alpha = 0; // make it invisible
 
-    world.addEntity(adventurer); // add it to the stage
-
-    adventurer.move(6, 100);
+    // world.addEntity(adventurer); // add it to the stage
 }
