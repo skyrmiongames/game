@@ -10,13 +10,13 @@ const app = new Application({
     // Create the Pixi base
     resizeTo: window,
     resolution: 1,
-    antialias: false
+    antialias: false,
 });
 document.body.appendChild(app.view); // Inject it
 
 Loader.shared
     .add([
-        require("../res/sprite/adventurer-idle-00.png") // must use webpack require
+        "res/sprite/adventurer-idle-00.png", // must use webpack require
     ])
     .on("start", () => {
         console.log("Loading...");
