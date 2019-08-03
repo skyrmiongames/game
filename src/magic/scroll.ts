@@ -1,46 +1,14 @@
-import { parse } from 'papaparse';
-import { readFileSync } from 'fs';
-import { Targets, Symbols, Stats } from './enums';
+import { Sprite, Texture, IResourceDictionary } from "pixi.js";
+import { ScrollData } from "./magic/data.ts"
 
-const file = readFileSync('./magic/spells.csv', 'utf8');
-var scrolls: Scroll;
-parse(file, {complete: (result) => scrolls});
-
-export class Scroll {
-	//Identifier
+export class ScrollEntity extends Sprite {
 	id: string;
-	name: string;
-	rarity: number;
-
-	//Scroll display
-	level: number;
+	scroll: string;
 	target: Targets;
-	symbol: Symbols;
 
-	//Spell type
-	stat: Stats;
-	power: number;
-	range: number;
-
-	//Particle features
-	speed: number;
-	color: string;
-	density: number;
-}
-
-export class Effect {
-	//Spell identifiers
-	symbol: Symbols;
-	stat: Stats;
-	power: number;
-
-	//Running time
-	duration: number;
-
-	constructor(scroll: Scroll) {
-		this.symbol = scroll.symbol;
-		this.stat = scroll.stat;
-		this.power = scroll.power;
-		this.duration = 60;
+	constructor(scroll: ScrollData, resources: IResourceDictionary) {
+		super(resources["res/sprite/sprite.png"].texture);
+		this.scroll = scroll.name;
+		this.target = scroll.target;
 	}
 }
