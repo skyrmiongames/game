@@ -10,6 +10,7 @@ parse("res/text/spells.csv", {
 	complete: result =>
 		(scrolls = result.data.reduce(function(map, obj) {
 			map[obj.name] = obj;
+			console.log(obj);
 			return map;
 		}, {})),
 	download: true,
