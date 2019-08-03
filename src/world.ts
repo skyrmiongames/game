@@ -7,6 +7,11 @@ export class World {
 		[key: string]: Entity;
 	};
 
+	constructor(stage: Container) {
+		this.entities = {};
+		this.stage = stage;
+	}
+
 	addEntity(entity: Entity) {
 		this.entities[entity.id] = entity;
 		this.stage.addChild(entity.sprite);

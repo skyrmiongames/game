@@ -28,10 +28,12 @@ function main(loader: Loader, obj: IResourceDictionary) {
 	console.log("All resources loaded.");
 	console.log(obj);
 
-	let world = new World();
+	let world = new World(app.stage);
 
 	let adventurer = new Entity(new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture)); //create sprite
 	// adventurer.alpha = 0; // make it invisible
 
 	world.addEntity(adventurer); // add it to the stage
+
+	adventurer.move(6, 50);
 }
