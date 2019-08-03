@@ -19,13 +19,10 @@ export class World extends Container {
         this.addChild(entity);
     }
 
-    addScroll(entity: ScrollEntity) {
-        this.addChild(entity);
-    }
-
     pickupScroll(entity: ScrollEntity) {
-         this.removeChild(entity);
-         this.overlay.pickupScroll(entity);
+        this.entities[entity.id] = null;
+        this.removeChild(entity);
+        this.overlay.pickupScroll(entity);
     }
 
     checkTile(x: number, y: number) {}
