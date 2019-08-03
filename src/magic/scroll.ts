@@ -2,7 +2,8 @@ enum Targets {
 	self,
 	self_area,
 	mouse_enemy,
-	mouse_direction,
+	mouse_proj,
+	mouse_cone,
 	mouse_area,
 	next_card
 }
@@ -13,13 +14,13 @@ enum Symbols {
 	sheild,
 	potion,
 	flame,
-	waves
+	waves,
+	flake
 }
 
-enum Effects {
-	damage,
-	defence,
-	poison,
+enum Stats {
+	health,
+	attack,
 	power,
 	range,
 	speed
@@ -29,20 +30,45 @@ export class Scroll {
 	//Identifier
 	id: string;
 	name: string;
+	rarity: number;
 
 	//Scroll display
-	rarity: number;
+	level: number;
 	symbol: Symbols;
 
 	//Spell type
-	instantaneous: boolean;
+	instant: boolean;
 	target: Targets;
-	effect: Effects;
-
-	//Spell power
+	stat: Stats;
 	power: number;
 	range: number;
+
+	//Particle features
 	speed: number;
-	color: number;
+	color: string;
 	density: number;
+}
+
+export class Effect {
+	//Spell identifiers
+	symbol: Symbols;
+	stat: Stats;
+	instant: boolean;
+	power: number;
+
+	//Running time
+	duration: number;
+	
+	constructor(scroll: Scroll) {
+		this.symbol = scroll.symbol;
+		this.stat = scroll.stat;
+		this.power = scroll.power;
+		this.instant = scroll.instant;
+
+		if(this.instant == true) {
+			this.duration = 1;
+		} else {
+			this.duration = 60;
+		}
+	}
 }
