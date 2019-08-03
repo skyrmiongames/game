@@ -6,6 +6,7 @@ export class Entity {
     sprite: Sprite;
     health: number;
     attack: number;
+    speed: number;
 
     constructor(sprite: Sprite, health: number = 10, attack: number = 5) {
         this.id = v4();
@@ -14,7 +15,7 @@ export class Entity {
         this.attack = attack;
     }
 
-    move(angle: number, distance: number) {
+    move(angle: number, distance: number = this.speed) {
         this.sprite.x += Math.cos(angle) * distance;
         this.sprite.y += Math.sin(angle) * distance;
     }
