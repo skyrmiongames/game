@@ -1,9 +1,11 @@
 import { Sprite } from "pixi.js";
 import { v4 } from "uuid";
+import { World } from "./world";
 
 export class Entity {
 	id: string;
 	sprite: Sprite;
+	world: World;
 	health: number;
 	attack: number;
 	location: {
@@ -20,5 +22,8 @@ export class Entity {
 		this.location.y = 0;
 	}
 
-	move(angle: number, distance: number) {}
+	move(angle: number, distance: number) {
+		this.location.x += Math.cos(angle) * distance;
+		this.location.y += Math.sin(angle) * distance;
+	}
 }
