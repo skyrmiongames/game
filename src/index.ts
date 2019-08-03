@@ -1,7 +1,12 @@
 import { Application, IResourceDictionary, Loader, Sprite } from "pixi.js";
 import "./main.css";
 
-const app = new Application({ resizeTo: window, resolution: 1 }); // Create the Pixi base
+const app = new Application({
+	// Create the Pixi base
+	resizeTo: window,
+	resolution: 1,
+	antialias: false,
+});
 document.body.appendChild(app.view); // Inject it
 
 Loader.shared
