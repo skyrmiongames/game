@@ -3,7 +3,8 @@ import { Application, IResourceDictionary, Loader, Sprite } from "pixi.js";
 import { Entity } from "./entity";
 import "./main.css";
 import { World } from "./world";
-import { addMainMenu } from "./mainmenu";
+import { mainMenu } from "./gui/mainmenu";
+import { addGui } from "./gui";
 
 const app = new Application({
     // Create the Pixi base
@@ -32,7 +33,7 @@ function main(loader: Loader, obj: IResourceDictionary) {
 
     app.stage.interactive = true;
 
-    addMainMenu(app.stage)
+    addGui(mainMenu, app.stage)
     let world = new World(app.stage);
 
     let adventurer = new Entity(
