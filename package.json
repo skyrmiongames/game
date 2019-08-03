@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "core-js": "^3.1.4",
+    "lit-html": "^1.1.1",
     "lodash": "^4.17.15",
     "pixi.js": "^5.0.4",
     "uuid": "^3.3.2"

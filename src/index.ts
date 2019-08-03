@@ -1,10 +1,16 @@
 import "core-js";
+import { html, render } from "lit-html";
 import { Application, IResourceDictionary, Loader, LoaderResource } from "pixi.js";
 import { Entity } from "./entity";
 import { addGui } from "./gui";
 import { mainMenu } from "./gui/mainmenu";
 import "./main.css";
 import { World } from "./world";
+
+const loadingTemplate = (percentage: number) => html`
+    <h1>Loading...</h1>
+    <progress max="100" , value="${percentage}"></progress>
+`;
 
 const app = new Application({
     // Create the Pixi base
@@ -20,13 +26,14 @@ Loader.shared
     })
     .on("progress", (loader: Loader, resource: LoaderResource) => {
         console.log(`Loaded ${resource.name} (${loader.progress}%)`);
+        render(loadingTemplate(loader.progress), document.body);
     })
     .on("complete", main)
     .load();
 
 function main(loader: Loader, resources: IResourceDictionary) {
     console.log("All resources loaded.");
-    document.body.appendChild(app.view); // Inject the Pixi view manager
+    render(app.view, document.body);
 
     app.stage.interactive = true;
 
