@@ -36,9 +36,7 @@ function main(loader: Loader, obj: IResourceDictionary) {
     addGui(mainMenu, app.stage);
     let world = new World(app.stage);
 
-    let adventurer = new Entity(
-        new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture)
-    ); //create sprite
+    let adventurer = new Entity(new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture)); //create sprite
     // adventurer.alpha = 0; // make it invisible
 
     // world.addEntity(adventurer); // add it to the stage

@@ -15,14 +15,8 @@ export class Button implements Gui {
     }
 
     doClick(event: PointerEvent) {
-        if (
-            this.text.x <= event.clientX &&
-            event.clientX <= this.text.x + this.text.width
-        ) {
-            if (
-                this.text.y <= event.clientY &&
-                event.clientY <= this.text.y + this.text.height
-            ) {
+        if (this.text.x <= event.clientX && event.clientX <= this.text.x + this.text.width) {
+            if (this.text.y <= event.clientY && event.clientY <= this.text.y + this.text.height) {
                 this.onClick();
             }
         }
