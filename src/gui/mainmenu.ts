@@ -7,7 +7,7 @@ export const start = new Button(startText, () => {
 });
 
 const optionsText = (() => {
-    let text = new Text("options", { fill: 0xffffff });
+    const text = new Text("options", { fill: 0xffffff });
     text.position.set(0, 30);
     return text;
 })();

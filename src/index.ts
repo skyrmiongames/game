@@ -33,7 +33,7 @@ function main(loader: Loader, obj: IResourceDictionary) {
 
     app.stage.interactive = true;
 
-    addGui(mainMenu, app.stage)
+    addGui(mainMenu, app.stage);
     let world = new World(app.stage);
 
     let adventurer = new Entity(
