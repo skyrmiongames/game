@@ -10,13 +10,13 @@ const app = new Application({
     // Create the Pixi base
     resizeTo: window,
     resolution: 1,
-    antialias: false
+    antialias: false,
 });
 document.body.appendChild(app.view); // Inject it
 
 Loader.shared
     .add([
-        require("../res/sprite/adventurer-idle-00.png") // must use webpack require
+        "res/sprite/adventurer-idle-00.png", // must use webpack require
     ])
     .on("start", () => {
         console.log("Loading...");
@@ -36,7 +36,7 @@ function main(loader: Loader, obj: IResourceDictionary) {
     addGui(mainMenu, app.stage);
     let world = new World(app.stage);
 
-    let adventurer = new Entity(new Sprite(obj[require("../res/sprite/adventurer-idle-00.png")].texture)); //create sprite
+    let adventurer = new Entity(new Sprite(obj["res/sprite/adventurer-idle-00.png"].texture)); //create sprite
     // adventurer.alpha = 0; // make it invisible
 
     // world.addEntity(adventurer); // add it to the stage
