@@ -1,20 +1,19 @@
 import { Container } from "pixi.js";
 import { Entity } from "./entity";
 
-export class World {
-    stage: Container;
+export class World extends Container {
     entities: {
         [key: string]: Entity;
     };
 
-    constructor(stage: Container) {
-        this.stage = stage;
+    constructor() {
+        super();
         this.entities = {};
     }
 
     addEntity(entity: Entity) {
         this.entities[entity.id] = entity;
-        this.stage.addChild(entity);
+        this.addChild(entity);
     }
 
     checkTile(x: number, y: number) {}

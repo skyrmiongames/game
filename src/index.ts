@@ -33,10 +33,10 @@ function main(loader: Loader, resources: IResourceDictionary) {
     app.stage.interactive = true;
 
     addGui(mainMenu, app.stage);
-    let world = new World(app.stage);
 
+    let world = new World();
     let adventurer = new Entity(resources[require("../res/sprite/adventurer-idle-00.png")].texture); //create sprite
-    // adventurer.alpha = 0; // make it invisible
+    world.addEntity(adventurer); // add it to the stage
 
-    // world.addEntity(adventurer); // add it to the stage
+    // app.stage = world // make the world active
 }
