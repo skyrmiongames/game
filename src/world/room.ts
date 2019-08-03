@@ -27,27 +27,15 @@ export class BasicRoomGenerator implements RoomGenerator {
         return {
             // TODO fix empty entities
             entities: emptyMatrix(),
-            tiles: generateRectangularRoomTiles(
-                this.roomTiles,
-                this.width,
-                this.height
-            )
+            tiles: generateRectangularRoomTiles(this.roomTiles, this.width, this.height)
         };
     }
 }
 
-export const generateRectangularRoomTiles = (
-    tiles: TileSet,
-    width: number,
-    height: number
-): Matrix<Tile> => {
+export const generateRectangularRoomTiles = (tiles: TileSet, width: number, height: number): Matrix<Tile> => {
     return new ArrayMatrix(
         _.range(0, height).map(y =>
-            _.range(0, width).map(x =>
-                x > 0 && x < width && y > 0 && y < height
-                    ? tiles.floor
-                    : tiles.wall
-            )
+            _.range(0, width).map(x => (x > 0 && x < width && y > 0 && y < height ? tiles.floor : tiles.wall))
         )
     );
 };

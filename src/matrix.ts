@@ -15,9 +15,7 @@ export class ArrayMatrix<T> implements Matrix<T> {
     }
 
     get entries(): Array<{ x: number; y: number; value: T }> {
-        return this.array.flatMap((xs, y) =>
-            xs.map((value, x) => ({ x, y, value }))
-        );
+        return this.array.flatMap((xs, y) => xs.map((value, x) => ({ x, y, value })));
     }
 }
 
