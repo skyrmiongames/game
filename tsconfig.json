@@ -1,13 +1,13 @@
 {
-	"include": ["src/**/*"],
-	"compilerOptions": {
-		"moduleResolution": "node",
-		"target": "es6",
-		"noImplicitAny": true,
-		"allowJs": false,
-		"removeComments": true,
-		"experimentalDecorators": true,
-		"lib": ["esnext", "dom", "es2018"],
-		"allowSyntheticDefaultImports": true
-	}
+    "include": ["src/**/*"],
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "target": "es5",
+        "noImplicitAny": true,
+        "allowJs": false,
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "lib": ["esnext", "dom", "es2018"],
+        "allowSyntheticDefaultImports": true
+    }
 }

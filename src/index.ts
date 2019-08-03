@@ -5,7 +5,12 @@ import { Entity } from "./entity";
 import { addGui } from "./gui";
 import { mainMenu } from "./gui/mainmenu";
 import "./main.css";
+import { defaultResources } from "./resource";
+import { BasicLoader } from "./resource/loader";
+import { SpritesheetSchema } from "./resource/schema";
 import { World } from "./world";
+
+const resourceLoader = new BasicLoader(defaultResources);
 
 const loadingTemplate = (percentage: number) => html`
     <h1>Loading...</h1>
@@ -19,8 +24,10 @@ const app = new Application({
     antialias: false,
 });
 
+const hero = resourceLoader.load<SpritesheetSchema>("sprites.hero");
+
 Loader.shared
-    .add(["res/sprite/adventurer.json"])
+    .add([hero.framePath])
     .on("start", () => {
         console.log("Loading...");
     })
@@ -40,7 +47,8 @@ function main(loader: Loader, resources: IResourceDictionary) {
     addGui(mainMenu, app.stage);
 
     let world = new World();
-    let adventurer = new Entity(resources["res/sprite/adventurer.json"].spritesheet); //create sprite
+
+    let adventurer = new Entity(resources[hero.framePath].spritesheet); //create sprite
     adventurer.speed = 1;
     adventurer.angle = 6;
     world.addEntity(adventurer); // add it to the stage

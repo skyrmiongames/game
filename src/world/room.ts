@@ -1,11 +1,11 @@
-import { Tile, TileSet, stoneTileSet } from "./tile";
-import { Entity } from "../entity";
+import { TileSet } from "./tile";
 import Matrix, { ArrayMatrix, emptyMatrix } from "../matrix";
-import _ from "lodash";
+import * as _ from "lodash";
+import { ResourceID } from "../resource/loader";
 
 export interface Room {
-    readonly entities: Matrix<Entity>;
-    readonly tiles: Matrix<Tile>;
+    readonly entities: Matrix<ResourceID>;
+    readonly tiles: Matrix<ResourceID>;
 }
 
 export interface RoomGenerator {
@@ -27,12 +27,12 @@ export class BasicRoomGenerator implements RoomGenerator {
         return {
             // TODO fix empty entities
             entities: emptyMatrix(),
-            tiles: generateRectangularRoomTiles(this.roomTiles, this.width, this.height)
+            tiles: generateRectangularRoomTiles(this.roomTiles, this.width, this.height),
         };
     }
 }
 
-export const generateRectangularRoomTiles = (tiles: TileSet, width: number, height: number): Matrix<Tile> => {
+export const generateRectangularRoomTiles = (tiles: TileSet, width: number, height: number): Matrix<ResourceID> => {
     return new ArrayMatrix(
         _.range(0, height).map(y =>
             _.range(0, width).map(x => (x > 0 && x < width && y > 0 && y < height ? tiles.floor : tiles.wall))
