@@ -61,8 +61,8 @@ export class Entity extends Container {
     }
 
     set_velocity(angle: number, speed: number) {
-        this._velocity_speed = speed
-        this._velocity_angle = angle
+        this._velocity_speed = speed;
+        this._velocity_angle = angle;
     }
 
     move(angle: number, distance: number = this.speed) {
