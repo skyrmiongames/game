@@ -5,7 +5,7 @@ export class Entity extends Sprite {
     id: string;
     health: number = 10;
     attack: number = 5;
-    speed: number = 5; // units per frame
+    speed: number = 3; // units per frame
 
     constructor(texture: Texture, opts?: { health?: number; attack?: number; speed?: number; x?: number; y?: number }) {
         super(texture);
