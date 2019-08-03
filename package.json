@@ -19,6 +19,7 @@
 	},
 	"homepage": "https://github.com/skyrmiongames/game#readme",
 	"devDependencies": {
+		"@types/uuid": "^3.4.5",
 		"css-loader": "^3.0.0",
 		"file-loader": "^4.0.0",
 		"html-webpack-plugin": "^3.2.0",
@@ -32,6 +33,7 @@
 		"webpack-merge": "^4.2.1"
 	},
 	"dependencies": {
-		"pixi.js": "^5.0.4"
+		"pixi.js": "^5.0.4",
+		"uuid": "^3.3.2"
 	}
 }
