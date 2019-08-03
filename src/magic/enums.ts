@@ -41,5 +41,5 @@ export enum States {
 	hand,
 	mouse,
 	self,
-	enemy
+	enemy,
 }

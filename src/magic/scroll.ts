@@ -1,7 +1,7 @@
 import { Sprite, Texture, IResourceDictionary } from "pixi.js";
-import { v4 } from "uuid";
-import { ScrollData, scrolls } from "./data";
 import { Targets, Symbols, Stats, States } from "./enums";
+import { ScrollData } from "./data";
+import { v4 } from "uuid";
 
 export class ScrollEntity extends Sprite {
 	readonly id: string;

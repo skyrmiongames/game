@@ -1,5 +1,5 @@
 import { Container } from "pixi.js";
-import { ScrollEntity } from "./scroll"
+import { ScrollEntity } from "./scroll";
 import { States } from "./enums";
 
 export class Overlay extends Container {
@@ -10,7 +10,7 @@ export class Overlay extends Container {
     player: ScrollEntity[];
     enemies: {
         [key: string]: ScrollEntity[];
-    }
+    };
 
     selected = -1;
 
@@ -24,8 +24,8 @@ export class Overlay extends Container {
 
     //Draw scroll from deck
     refillHand() {
-        for(var i = 0; i < this.handSize; i++) {
-            if(this.hand[i] == null) {
+        for (var i = 0; i < this.handSize; i++) {
+            if (this.hand[i] == null) {
                 let entity = this.deck.shift();
                 this.hand[i] = entity;
 

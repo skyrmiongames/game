@@ -1,18 +1,30 @@
-/* Author: Kaden Thomas
- *
- * Tile information
- */
+import { Schema, DisplaySchema } from "../resource/schema";
+import { ResourceID } from "../resource/loader";
+import { uniqueID } from "../resource";
 
-export type Tile = string;
+export interface TileSchema extends Schema {}
+export interface TileSetSchema extends TileSet, Schema {}
 
 export interface TileSet {
-    readonly floor: Tile;
-    readonly wall: Tile;
+    floor: ResourceID;
+    wall: ResourceID;
 }
 
-export const emptyTile: Tile = "tile.empty";
+export interface WallTileSchema extends Schema {
+    corner: ResourceID;
+    /* Intersections */
+    fourWay: ResourceID;
+    threeWay: ResourceID;
+}
 
-export const stoneTileSet: TileSet = {
-    floor: "tile.stone.floor",
-    wall: "tile.stone.wall"
+export const emptyTile: TileSchema = {
+    id: uniqueID(),
+    name: "empty_tile",
+};
+
+export const stoneTileSet: TileSetSchema = {
+    id: uniqueID(),
+    name: "stone_tile_set",
+    floor: "tiles.stone_floor",
+    wall: "tiles.stone_wall",
 };

@@ -1,5 +1,5 @@
 import { parse } from "papaparse";
-import { Targets, Symbols, Stats } from "./enums";
+import { Stats, Symbols, Targets } from "./enums";
 
 export var scrolls: {
 	[key: string]: ScrollData;
@@ -17,7 +17,7 @@ parse("res/text/spells.csv", {
 	header: true,
 });
 
-export class ScrollData {
+export interface ScrollData {
 	//Identifier
 	name: string;
 	rarity: number;
