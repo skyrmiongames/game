@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/skyrmiongames/game#readme",
   "devDependencies": {
+    "@types/lodash": "^4.14.136",
     "@types/uuid": "^3.4.5",
     "css-loader": "^3.0.0",
     "file-loader": "^4.0.0",
@@ -36,6 +37,7 @@
   },
   "dependencies": {
     "core-js": "^3.1.4",
+    "lodash": "^4.17.15",
     "pixi.js": "^5.0.4",
     "uuid": "^3.3.2"
   }
