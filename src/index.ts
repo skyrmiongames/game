@@ -49,8 +49,6 @@ function main(loader: Loader, resources: IResourceDictionary) {
     let world = new World();
 
     let adventurer = new Entity(resources[hero.framePath].spritesheet); //create sprite
-    adventurer.speed = 1;
-    adventurer.angle = 6;
     world.addEntity(adventurer); // add it to the stage
 
     app.stage = world; // make the world active
