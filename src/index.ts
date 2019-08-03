@@ -2,7 +2,6 @@ import { Application, IResourceDictionary, Loader, Sprite } from "pixi.js";
 import { Entity } from "./entity";
 import "./main.css";
 import { World } from "./world";
-import { addMainMenu } from "./mainmenu";
 
 const app = new Application({
     // Create the Pixi base
@@ -39,4 +38,6 @@ function main(loader: Loader, obj: IResourceDictionary) {
     // adventurer.alpha = 0; // make it invisible
 
     world.addEntity(adventurer); // add it to the stage
+
+    adventurer.move(6, 50);
 }
