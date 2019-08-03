@@ -14,7 +14,7 @@ export const defaultResources: Resources = {
     sprites: [
         {
             id: uniqueID(),
-            name: "hero_sprite",
+            name: "hero",
             sheetPath: "res/sprite/adventurer.png",
             framePath: "res/sprite/adventurer.json",
         },
