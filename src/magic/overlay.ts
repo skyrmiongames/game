@@ -17,15 +17,19 @@ export class Overlay extends Container {
     constructor() {
         super();
         this.deck = [];
-        this.hand = [null, null, null, null];
+        this.hand = [null, null, null];
         this.player = [];
         this.enemies = {};
+
+        window.addEventListener("keydown", event => {
+            this.grabScroll(Number(event.key));
+        }, false);
     }
 
     //Draw scroll from deck
     refillHand() {
         for (var i = 0; i < this.handSize; i++) {
-            if (this.hand[i] == null) {
+            if (this.hand[i] == null && this.deck.length > 0) {
                 let entity = this.deck.shift();
                 this.hand[i] = entity;
 
@@ -48,9 +52,12 @@ export class Overlay extends Container {
 
     //Grab scroll from hand
     grabScroll(index: number) {
-        this.hand[index].state = States.mouse;
-        this.hand[index].arrived = false;
-        this.selected = index;
+        index--;
+        if(index >= 0 && index < this.handSize) {
+            this.hand[index].state = States.mouse;
+            this.hand[index].arrived = false;
+            this.selected = index;
+        }
     }
 
     //Return scroll to hand
