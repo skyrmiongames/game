@@ -21,9 +21,13 @@ export class Overlay extends Container {
         this.player = [];
         this.enemies = {};
 
-        window.addEventListener("keydown", event => {
-            this.grabScroll(Number(event.key));
-        }, false);
+        window.addEventListener(
+            "keydown",
+            event => {
+                this.grabScroll(Number(event.key));
+            },
+            false
+        );
     }
 
     //Draw scroll from deck
@@ -53,7 +57,7 @@ export class Overlay extends Container {
     //Grab scroll from hand
     grabScroll(index: number) {
         index--;
-        if(index >= 0 && index < this.handSize) {
+        if (index >= 0 && index < this.handSize) {
             this.hand[index].state = States.mouse;
             this.hand[index].arrived = false;
             this.selected = index;
