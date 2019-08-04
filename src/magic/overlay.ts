@@ -57,7 +57,7 @@ export class Overlay extends Container {
     //Grab scroll from hand
     grabScroll(index: number) {
         index--;
-        if (index >= 0 && index < this.handSize) {
+        if (this.selected == -1 && index >= 0 && index < this.handSize) {
             this.hand[index].state = States.mouse;
             this.hand[index].arrived = false;
             this.selected = index;
@@ -66,7 +66,20 @@ export class Overlay extends Container {
 
     //Return scroll to hand
     cancelScroll() {
-        this.hand[this.selected].state = States.hand;
-        this.selected = -1;
+        if (selected > -1) {
+            this.hand[this.selected].state = States.hand;
+            this.selected = -1;
+        }
+    }
+
+    //Use scroll in hand
+    useScroll() {
+        if (selected > -1) {
+            this.hand[this.selected].arrived = true;
+            this.hand[this.selected] = null;
+
+            this.selected = -1;
+            this.refillHand();
+        }
     }
 }
