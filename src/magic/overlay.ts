@@ -28,6 +28,14 @@ export class Overlay extends Container {
             },
             false
         );
+
+        window.addEventListener(
+            "click",
+            event => {
+                event.button == 0 ? this.useScroll() : this.cancelScroll();
+            },
+            false
+        );
     }
 
     //Draw scroll from deck
@@ -66,7 +74,7 @@ export class Overlay extends Container {
 
     //Return scroll to hand
     cancelScroll() {
-        if (selected > -1) {
+        if (this.selected > -1) {
             this.hand[this.selected].state = States.hand;
             this.selected = -1;
         }
@@ -74,7 +82,7 @@ export class Overlay extends Container {
 
     //Use scroll in hand
     useScroll() {
-        if (selected > -1) {
+        if (this.selected > -1) {
             this.hand[this.selected].arrived = true;
             this.hand[this.selected] = null;
 
