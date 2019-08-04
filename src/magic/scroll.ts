@@ -10,7 +10,7 @@ export class Scroll extends Entity {
 	arrived: boolean;
 
 	//Spell identifier
-	scroll: string;
+	spell: string;
 	target: Targets;
 
 	constructor(scroll: Spell, resources: IResourceDictionary, x: number, y: number) {
@@ -25,12 +25,12 @@ export class Scroll extends Entity {
 		this.duration = 60;
 		this.arrived = true;
 
-		this.scroll = scroll.name;
+		this.spell = scroll.name;
 		this.target = scroll.target;
 	}
 
 	getData(): Spell {
-		return scrolls[this.scroll];
+		return spells[this.spell];
 	}
 
 	getTarget(): Point {

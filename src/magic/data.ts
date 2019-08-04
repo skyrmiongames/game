@@ -8,7 +8,7 @@ export var spells: {
 //Convert csv into scroll map
 parse("res/text/spells.csv", {
 	complete: result =>
-		(scrolls = result.data.reduce(function(map, obj) {
+		(spells = result.data.reduce(function(map, obj) {
 			map[obj.name] = obj;
 			console.log(obj);
 			return map;
