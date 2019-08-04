@@ -1,5 +1,6 @@
 import { AnimatedSprite, Container, Spritesheet, Texture } from "pixi.js";
 import { v4 } from "uuid";
+import { Vector } from "./vector";
 
 export type AnimationState = "idle" | "attack" | "cast" | "die" | "fall" | "hurt" | "jump" | "run";
 
@@ -48,16 +49,15 @@ export class Entity extends Container {
         this.animationstate = "idle";
     }
 
-    speed = 0; // multiplied by runspeed to determine movement speed.
-    angle = 0; // radians
+    move_vector: Vector = { scalar: 0, direction: 0 };
     tick(delta: number) {
-        if (this.speed > 0 && this.animationstate == "idle") {
+        if (this.move_vector.scalar > 0 && this.animationstate == "idle") {
             this.animationstate = "run";
-        } else if (this.speed == 0 && this.animationstate == "run") {
+        } else if (this.move_vector.scalar == 0 && this.animationstate == "run") {
             this.animationstate = "idle";
         }
 
-        this.move(this.angle, delta * this.runspeed * this.speed);
+        this.move(this.move_vector.direction, delta * this.runspeed * this.move_vector.scalar);
     }
 
     move(angle: number, distance: number = this.runspeed) {

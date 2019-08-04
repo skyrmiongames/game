@@ -1,7 +1,7 @@
 import { Container } from "pixi.js";
 import { Entity } from "./entity";
-import { ScrollEntity } from "./magic/scroll"
-import { Overlay } from "./magic/overlay"
+import { Overlay } from "./magic/overlay";
+import { ScrollEntity } from "./magic/scroll";
 
 export class World extends Container {
     entities: {
@@ -12,6 +12,7 @@ export class World extends Container {
     constructor() {
         super();
         this.entities = {};
+        this.interactive = true;
     }
 
     addEntity(entity: Entity) {
@@ -24,8 +25,8 @@ export class World extends Container {
     }
 
     pickupScroll(entity: ScrollEntity) {
-         this.removeChild(entity);
-         this.overlay.pickupScroll(entity);
+        this.removeChild(entity);
+        this.overlay.pickupScroll(entity);
     }
 
     checkTile(x: number, y: number) {}

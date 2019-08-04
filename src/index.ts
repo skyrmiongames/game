@@ -8,6 +8,7 @@ import "./main.css";
 import { defaultResources } from "./resource";
 import { BasicLoader } from "./resource/loader";
 import { SpritesheetSchema } from "./resource/schema";
+import { add_vectors, Vector } from "./vector";
 import { World } from "./world";
 
 const resourceLoader = new BasicLoader(defaultResources);
@@ -48,7 +49,39 @@ function main(loader: Loader, resources: IResourceDictionary) {
 
     let world = new World();
 
-    let adventurer = new Entity(resources[hero.framePath].spritesheet); //create sprite
+    // Hero setup
+    let adventurer = new Entity(resources[hero.framePath].spritesheet);
+    let keyStates = { w: false, a: false, s: false, d: false } as { [key: string]: boolean };
+    function adjustadventurervelocity(key: string, pressed: boolean) {
+        if (Object.keys(keyStates).includes(key.toLowerCase())) {
+            keyStates[key.toLowerCase()] = pressed;
+        }
+
+        let vectors: Vector[] = [];
+
+        if (keyStates.w) vectors.push({ scalar: 1, direction: Math.PI / 2 });
+        if (keyStates.a) vectors.push({ scalar: 1, direction: Math.PI });
+        if (keyStates.s) vectors.push({ scalar: 1, direction: (3 * Math.PI) / 2 });
+        if (keyStates.d) vectors.push({ scalar: 1, direction: 0 });
+
+        let resp = add_vectors(...vectors);
+        adventurer.move_vector = { ...resp, scalar: resp.scalar > 1 ? 1 : resp.scalar };
+    }
+    window.addEventListener(
+        "keydown",
+        event => {
+            adjustadventurervelocity(event.key, true);
+        },
+        false
+    );
+    window.addEventListener(
+        "keyup",
+        event => {
+            adjustadventurervelocity(event.key, false);
+        },
+        false
+    );
+
     world.addEntity(adventurer); // add it to the stage
 
     app.stage = world; // make the world active
