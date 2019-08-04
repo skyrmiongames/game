@@ -1,5 +1,6 @@
 import { Container } from "pixi.js";
 import { ScrollEntity } from "./scroll";
+import { Selector } from "./selector";
 import { States } from "./enums";
 
 export class Overlay extends Container {
@@ -13,6 +14,7 @@ export class Overlay extends Container {
     };
 
     selected = -1;
+    selector: Selector;
 
     constructor() {
         super();
