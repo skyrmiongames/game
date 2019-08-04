@@ -2,12 +2,13 @@ import { Targets, Symbols, Stats, States } from "./enums";
 import { Spritesheet, Point } from "pixi.js";
 import { Spell, spells } from "./data";
 import { Entity } from "../entity";
+import { mouse } from "../index";
 
 export class Scroll extends Entity {
 	state: States;
 	place: number;
-	duration: number;
 	arrived: boolean;
+	offset: number;
 
 	//Spell identifier
 	spell: string;
@@ -25,7 +26,6 @@ export class Scroll extends Entity {
 
 		this.state = States.world;
 		this.place = 0;
-		this.duration = 60;
 		this.arrived = true;
 
 		this.spell = scroll.name;
@@ -43,11 +43,11 @@ export class Scroll extends Entity {
 			case States.hand:
 				return new Point(100 + 80 * this.place, 400);
 			case States.mouse:
-				return new Point(150, 150);
+				return new Point(mouse.x - 10, mouse.y - 10);
 			case States.self:
-				return new Point(5 + 5 * this.place, 5);
+				return new Point(5 + 5 * this.place, 10);
 			case States.enemy:
-				return new Point(300 - 5 * this.place, 5);
+				return new Point(400 - 5 * this.place, 10 + this.offset * 40);
 			default:
 				return new Point(0, 0);
 		}
@@ -71,11 +71,13 @@ export class Effect extends Scroll {
 	symbol: Symbols;
 	stat: Stats;
 	power: number;
+	duration: number;
 
-	constructor(scroll: Scroll, texture: Spritesheet, player: boolean, x: number, y: number) {
-		super(scroll.getData(), texture, x, y);
+	constructor(scroll: Scroll, texture: Spritesheet, player: boolean, offset: number) {
+		super(scroll.getData(), texture, player ? -50 : 450, 10 + offset * 40);
 		this.state = player ? States.self : States.enemy;
 		this.duration = 60;
+		this.offset = offset;
 
 		this.symbol = scroll.getData().symbol;
 		this.stat = scroll.getData().stat;

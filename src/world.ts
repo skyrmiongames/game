@@ -34,11 +34,24 @@ export class World extends Container {
         this.overlay.pickupScroll(entity);
     }
 
+    setOffsets(start: number) {
+        for (var i = 0; i < this.children.length; i++) {
+            let child = this.children[i] as Entity;
+            if (child.id) {
+                   child.lowerOffset(start);
+            }
+        }
+    }
+
     tick(delta: number) {
         for (var i = 0; i < this.children.length; i++) {
             let child = this.children[i] as Entity;
             if (child.id) {
                 child.tick(delta);
+
+                let k = child.tickEffects();
+                if(k != -1)
+                    this.setOffsets(k);
             }
         }
         this.overlay.tick(delta);
