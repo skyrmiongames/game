@@ -1,8 +1,8 @@
 import { parse } from "papaparse";
 import { Stats, Symbols, Targets } from "./enums";
 
-export var scrolls: {
-	[key: string]: ScrollData;
+export var spells: {
+	[key: string]: Spell;
 };
 
 //Convert csv into scroll map
@@ -18,7 +18,7 @@ parse("res/text/spells.csv", {
 	header: true,
 });
 
-export interface ScrollData {
+export interface Spell {
 	//Identifier
 	name: string;
 	rarity: number;
@@ -31,7 +31,6 @@ export interface ScrollData {
 	//Spell type
 	stat: Stats;
 	power: number;
-	range: number;
 
 	//Particle features
 	speed: number;

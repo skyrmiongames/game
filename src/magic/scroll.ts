@@ -1,9 +1,9 @@
 import { Targets, Symbols, Stats, States } from "./enums";
 import { IResourceDictionary, Point } from "pixi.js";
-import { ScrollData, scrolls } from "./data";
+import { Spell, spells } from "./data";
 import { Entity } from "../entity";
 
-export class ScrollEntity extends Entity {
+export class Scroll extends Entity {
 	state: States;
 	place: number;
 	duration: number;
@@ -13,7 +13,7 @@ export class ScrollEntity extends Entity {
 	scroll: string;
 	target: Targets;
 
-	constructor(scroll: ScrollData, resources: IResourceDictionary, x: number, y: number) {
+	constructor(scroll: Spell, resources: IResourceDictionary, x: number, y: number) {
 		super(resources["res/sprite/scroll.png"].spritesheet, {
 			runspeed: 3,
 			x: x,
@@ -29,7 +29,7 @@ export class ScrollEntity extends Entity {
 		this.target = scroll.target;
 	}
 
-	getData(): ScrollData {
+	getData(): Spell {
 		return scrolls[this.scroll];
 	}
 
@@ -63,13 +63,13 @@ export class ScrollEntity extends Entity {
 	}
 }
 
-export class Effect extends ScrollEntity {
+export class Effect extends Scroll {
 	//Spell values
 	symbol: Symbols;
 	stat: Stats;
 	power: number;
 
-	constructor(scroll: ScrollEntity, resources: IResourceDictionary, player: boolean, x: number, y: number) {
+	constructor(scroll: Scroll, resources: IResourceDictionary, player: boolean, x: number, y: number) {
 		super(scroll.getData(), resources, x, y);
 		this.state = player ? States.self : States.enemy;
 		this.duration = 60;

@@ -1,16 +1,16 @@
 import { Container } from "pixi.js";
-import { ScrollEntity } from "./scroll";
+import { Scroll } from "./scroll";
 import { Selector } from "./selector";
 import { States } from "./enums";
 
 export class Overlay extends Container {
     handSize = 3;
 
-    deck: ScrollEntity[];
-    hand: ScrollEntity[];
-    player: ScrollEntity[];
+    deck: Scroll[];
+    hand: Scroll[];
+    player: Scroll[];
     enemies: {
-        [key: string]: ScrollEntity[];
+        [key: string]: Scroll[];
     };
 
     selected = -1;
@@ -55,7 +55,7 @@ export class Overlay extends Container {
     }
 
     //Pickup scroll from ground
-    pickupScroll(entity: ScrollEntity) {
+    pickupScroll(entity: Scroll) {
         this.deck.push(entity);
         this.addChild(entity);
 

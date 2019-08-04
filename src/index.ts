@@ -2,8 +2,8 @@ import "core-js";
 import { html, render } from "lit-html";
 import { Application, IResourceDictionary, Loader, LoaderResource } from "pixi.js";
 import { Entity } from "./entity";
-import { ScrollEntity } from "./magic/scroll";
-import { scrolls } from "./magic/data";
+import { Scroll } from "./magic/scroll";
+import { spells } from "./magic/data";
 import { addGui } from "./gui";
 import { mainMenu } from "./gui/mainmenu";
 import "./main.css";
@@ -86,7 +86,7 @@ function main(loader: Loader, resources: IResourceDictionary) {
 
     world.addEntity(adventurer); // add it to the stage
 
-    let scroll = new ScrollEntity(scrolls["Flame"], resources, 20, 20);
+    let scroll = new Scroll(spells["Flame"], resources, 20, 20);
     world.addEntity(scroll);
 
     app.stage = world; // make the world active
