@@ -1,5 +1,5 @@
 import { Targets, Symbols, Stats, States } from "./enums";
-import { IResourceDictionary, Point } from "pixi.js";
+import { Spritesheet, Point } from "pixi.js";
 import { Spell, spells } from "./data";
 import { Entity } from "../entity";
 
@@ -13,12 +13,15 @@ export class Scroll extends Entity {
 	spell: string;
 	target: Targets;
 
-	constructor(scroll: Spell, resources: IResourceDictionary, x: number, y: number) {
-		super(resources["res/sprite/scroll.png"].spritesheet, {
-			runspeed: 3,
+	constructor(scroll: Spell, texture: Spritesheet, x: number, y: number) {
+		super(texture, {
+			runspeed: 5,
 			x: x,
 			y: y,
 		});
+
+		this.height = 90;
+		this.width = 90;
 
 		this.state = States.world;
 		this.place = 0;
@@ -36,11 +39,11 @@ export class Scroll extends Entity {
 	getTarget(): Point {
 		switch (this.state) {
 			case States.deck:
-				return new Point(10, 100);
+				return new Point(10, 430);
 			case States.hand:
-				return new Point(20 + 5 * this.place, 300);
+				return new Point(100 + 80 * this.place, 400);
 			case States.mouse:
-				return new Point(0, 0);
+				return new Point(150, 150);
 			case States.self:
 				return new Point(5 + 5 * this.place, 5);
 			case States.enemy:
@@ -54,9 +57,9 @@ export class Scroll extends Entity {
 	tick(delta: number) {
 		if (!this.arrived) {
 			let target = this.getTarget();
-			if (this.state == States.mouse || Math.abs(this.x - target.x) > 5 || Math.abs(this.y - target.y) > 5) {
-				this.move(Math.atan2((target.y - this.y), (target.x - this.x)));
-			} else {
+			if (Math.abs(this.x - target.x) > 6 || Math.abs(this.y - target.y) > 6) {
+				this.move(Math.atan2(this.y - target.y, target.x - this.x));
+			} else if (this.state != States.mouse) {
 				this.arrived = true;
 			}
 		}
@@ -69,8 +72,8 @@ export class Effect extends Scroll {
 	stat: Stats;
 	power: number;
 
-	constructor(scroll: Scroll, resources: IResourceDictionary, player: boolean, x: number, y: number) {
-		super(scroll.getData(), resources, x, y);
+	constructor(scroll: Scroll, texture: Spritesheet, player: boolean, x: number, y: number) {
+		super(scroll.getData(), texture, x, y);
 		this.state = player ? States.self : States.enemy;
 		this.duration = 60;
 

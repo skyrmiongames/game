@@ -18,6 +18,12 @@ export const defaultResources: Resources = {
             sheetPath: "res/sprite/adventurer.png",
             framePath: "res/sprite/adventurer.json",
         },
+        {
+            id: uniqueID(),
+            name: "scroll",
+            sheetPath: "res/sprite/scroll.png",
+            framePath: "res/sprite/scroll.json",
+        },
         // TODO stairwell
     ],
     entities: [
@@ -26,6 +32,12 @@ export const defaultResources: Resources = {
             name: "hero",
             displayName: "Hero",
             spriteSheet: "sprites.hero_sprite",
+        },
+        {
+            id: uniqueID(),
+            name: "scroll",
+            displayName: "Scroll",
+            spriteSheet: "sprites.scroll_sprite",
         },
         {
             id: uniqueID(),

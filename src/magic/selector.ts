@@ -1,14 +1,17 @@
-import { IResourceDictionary, Point } from "pixi.js";
-import { Spell } from "./data";
-import { Targets } from "./enums";
+import { Spritesheet, Point } from "pixi.js";
 import { Entity } from "../entity";
+import { Targets } from "./enums";
+import { Spell } from "./data";
 
 export class Selector extends Entity {
 	targeting: Targets;
 	spell: Spell;
 
-	constructor(resources: IResourceDictionary) {
-		super(resources["res/sprite/select.png"].spritesheet);
+	constructor(texture: Spritesheet) {
+		super(texture);
+		this.height = 90;
+		this.width = 90;
+		this.alpha = 0;
 	}
 
 	setSpell(spell: Spell) {

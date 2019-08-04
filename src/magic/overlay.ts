@@ -1,6 +1,7 @@
-import { Container } from "pixi.js";
-import { Scroll } from "./scroll";
 import { Selector } from "./selector";
+import { Container } from "pixi.js";
+import { Entity } from "../entity";
+import { Scroll } from "./scroll";
 import { States } from "./enums";
 
 export class Overlay extends Container {
@@ -16,8 +17,10 @@ export class Overlay extends Container {
     selected = -1;
     selector: Selector;
 
-    constructor() {
+    constructor(selector: Selector) {
         super();
+        this.selector = selector;
+
         this.deck = [];
         this.hand = [null, null, null];
         this.player = [];
@@ -26,7 +29,7 @@ export class Overlay extends Container {
         window.addEventListener(
             "keydown",
             event => {
-                this.grabScroll(Number(event.key));
+                this.keyHandler(event.key);
             },
             false
         );
@@ -38,6 +41,23 @@ export class Overlay extends Container {
             },
             false
         );
+    }
+
+    keyHandler(key: string) {
+        if (key.charCodeAt(0) == 32) {
+            this.cancelScroll();
+        } else {
+            this.grabScroll(Number(key));
+        }
+    }
+
+    tick(delta: number) {
+        for (var i = 0; i < this.children.length; i++) {
+            let child = this.children[i] as Entity;
+            if (child.id) {
+                child.tick(delta);
+            }
+        }
     }
 
     //Draw scroll from deck
@@ -67,7 +87,7 @@ export class Overlay extends Container {
     //Grab scroll from hand
     grabScroll(index: number) {
         index--;
-        if (this.selected == -1 && index >= 0 && index < this.handSize) {
+        if (this.selected == -1 && index >= 0 && index < this.handSize && this.hand[index]) {
             this.hand[index].state = States.mouse;
             this.hand[index].arrived = false;
             this.selected = index;

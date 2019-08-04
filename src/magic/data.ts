@@ -1,5 +1,5 @@
-import { parse } from "papaparse";
 import { Stats, Symbols, Targets } from "./enums";
+import { parse } from "papaparse";
 
 export var spells: {
 	[key: string]: Spell;
