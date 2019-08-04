@@ -55,7 +55,7 @@ export class ScrollEntity extends Entity {
 		if (!this.arrived) {
 			let target = this.getTarget();
 			if (this.state == States.mouse || Math.abs(this.x - target.x) > 5 || Math.abs(this.y - target.y) > 5) {
-				this.move(Math.tan((target.y - this.y) / (target.x - this.x)));
+				this.move(Math.atan2((target.y - this.y), (target.x - this.x)));
 			} else {
 				this.arrived = true;
 			}
