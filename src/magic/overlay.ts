@@ -91,7 +91,7 @@ export class Overlay extends Container {
             this.hand[index].state = States.mouse;
             this.hand[index].runspeed = 8;
             this.hand[index].arrived = false;
-            
+
             this.selected = index;
         }
     }
