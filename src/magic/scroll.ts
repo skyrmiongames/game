@@ -2,6 +2,7 @@ import { Targets, Symbols, Stats, States } from "./enums";
 import { Spritesheet, Point } from "pixi.js";
 import { Spell, spells } from "./data";
 import { Entity } from "../entity";
+import { mouse } from "../index";
 
 export class Scroll extends Entity {
 	state: States;
@@ -43,7 +44,7 @@ export class Scroll extends Entity {
 			case States.hand:
 				return new Point(100 + 80 * this.place, 400);
 			case States.mouse:
-				return new Point(150, 150);
+				return new Point(mouse.x - 10, mouse.y - 10);
 			case States.self:
 				return new Point(5 + 5 * this.place, 5);
 			case States.enemy:

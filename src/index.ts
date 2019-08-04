@@ -1,4 +1,4 @@
-import { Application, IResourceDictionary, Loader, LoaderResource } from "pixi.js";
+import { Application, IResourceDictionary, Loader, LoaderResource, Point } from "pixi.js";
 import { SpritesheetSchema } from "./resource/schema";
 import { BasicLoader } from "./resource/loader";
 import { add_vectors, Vector } from "./vector";
@@ -32,6 +32,7 @@ const app = new Application({
 const heroT = resourceLoader.load<SpritesheetSchema>("sprites.hero");
 export const scrollT = resourceLoader.load<SpritesheetSchema>("sprites.scroll");
 
+export var mouse: Point;
 Loader.shared
     .add([heroT.framePath, scrollT.framePath])
     .on("start", () => {
@@ -101,7 +102,7 @@ function main(loader: Loader, resources: IResourceDictionary) {
 
     app.ticker.add((delta: number) => {
         // Animation loop
-
+        mouse = app.renderer.plugins.interaction.mouse.global;
         world.tick(delta);
     });
 }
