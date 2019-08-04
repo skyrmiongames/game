@@ -1,7 +1,9 @@
-import { Container } from "pixi.js";
-import { Entity } from "./entity";
+import { Container, IResourceDictionary } from "pixi.js";
+import { Selector } from "./magic/selector";
 import { Overlay } from "./magic/overlay";
-import { ScrollEntity } from "./magic/scroll";
+import { Scroll } from "./magic/scroll";
+import { Entity } from "./entity";
+import { scrollT } from "./index";
 
 export class World extends Container {
     entities: {
@@ -9,10 +11,16 @@ export class World extends Container {
     };
     overlay: Overlay;
 
-    constructor() {
+    constructor(resources: IResourceDictionary) {
         super();
         this.entities = {};
         this.interactive = true;
+
+        let selector = new Selector(resources[scrollT.framePath].spritesheet);
+        this.addEntity(selector);
+
+        this.overlay = new Overlay(selector);
+        this.addChild(this.overlay);
     }
 
     addEntity(entity: Entity) {
@@ -20,10 +28,20 @@ export class World extends Container {
         this.addChild(entity);
     }
 
-    pickupScroll(entity: ScrollEntity) {
+    pickupScroll(entity: Scroll) {
         this.entities[entity.id] = null;
         this.removeChild(entity);
         this.overlay.pickupScroll(entity);
+    }
+
+    tick(delta: number) {
+        for (var i = 0; i < this.children.length; i++) {
+            let child = this.children[i] as Entity;
+            if (child.id) {
+                child.tick(delta);
+            }
+        }
+        this.overlay.tick(delta);
     }
 
     checkTile(x: number, y: number) {}

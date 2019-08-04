@@ -1,6 +1,6 @@
 import { AnimatedSprite, Container, Spritesheet, Texture } from "pixi.js";
-import { v4 } from "uuid";
 import { Vector } from "./vector";
+import { v4 } from "uuid";
 
 export type AnimationState = "idle" | "attack" | "cast" | "die" | "fall" | "hurt" | "jump" | "run";
 

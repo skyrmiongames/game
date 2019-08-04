@@ -1,17 +1,19 @@
-import "core-js";
-import { html, render } from "lit-html";
 import { Application, IResourceDictionary, Loader, LoaderResource } from "pixi.js";
-import { Entity } from "./entity";
-import { ScrollEntity } from "./magic/scroll";
-import { scrolls } from "./magic/data";
-import { addGui } from "./gui";
-import { mainMenu } from "./gui/mainmenu";
-import "./main.css";
-import { defaultResources } from "./resource";
-import { BasicLoader } from "./resource/loader";
 import { SpritesheetSchema } from "./resource/schema";
+import { BasicLoader } from "./resource/loader";
 import { add_vectors, Vector } from "./vector";
+import { defaultResources } from "./resource";
+import { mainMenu } from "./gui/mainmenu";
+import { html, render } from "lit-html";
+import { Scroll } from "./magic/scroll";
+import { spells } from "./magic/data";
+import { Entity } from "./entity";
 import { World } from "./world";
+import { addGui } from "./gui";
+import "./main.css";
+import "core-js";
+
+
 
 const resourceLoader = new BasicLoader(defaultResources);
 
@@ -27,10 +29,11 @@ const app = new Application({
     antialias: false,
 });
 
-const hero = resourceLoader.load<SpritesheetSchema>("sprites.hero");
+const heroT = resourceLoader.load<SpritesheetSchema>("sprites.hero");
+export const scrollT = resourceLoader.load<SpritesheetSchema>("sprites.scroll");
 
 Loader.shared
-    .add([hero.framePath, "res/sprite/scroll.png", "res/text/spells.csv"])
+    .add([heroT.framePath, scrollT.framePath])
     .on("start", () => {
         console.log("Loading...");
     })
@@ -49,10 +52,10 @@ function main(loader: Loader, resources: IResourceDictionary) {
 
     addGui(mainMenu, app.stage);
 
-    let world = new World();
+    let world = new World(resources);
 
     // Hero setup
-    let adventurer = new Entity(resources[hero.framePath].spritesheet);
+    let adventurer = new Entity(resources[heroT.framePath].spritesheet);
     let keyStates = { w: false, a: false, s: false, d: false } as { [key: string]: boolean };
     function adjustadventurervelocity(key: string, pressed: boolean) {
         if (Object.keys(keyStates).includes(key.toLowerCase())) {
@@ -84,16 +87,21 @@ function main(loader: Loader, resources: IResourceDictionary) {
         false
     );
 
+    adventurer.width *= 2;
+    adventurer.height *= 2;
     world.addEntity(adventurer); // add it to the stage
 
-    let scroll = new ScrollEntity(scrolls["Flame"], resources, 20, 20);
-    world.addEntity(scroll);
+    for (var i = 0; i < 5; i++) {
+        let scroll = new Scroll(spells["Flame"], resources[scrollT.framePath].spritesheet, 20, 20);
+        world.addEntity(scroll);
+        world.pickupScroll(scroll);
+    }
 
     app.stage = world; // make the world active
 
     app.ticker.add((delta: number) => {
         // Animation loop
 
-        adventurer.tick(delta);
+        world.tick(delta);
     });
 }

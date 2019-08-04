@@ -1,14 +1,14 @@
-import { parse } from "papaparse";
 import { Stats, Symbols, Targets } from "./enums";
+import { parse } from "papaparse";
 
-export var scrolls: {
-	[key: string]: ScrollData;
+export var spells: {
+	[key: string]: Spell;
 };
 
 //Convert csv into scroll map
 parse("res/text/spells.csv", {
 	complete: result =>
-		(scrolls = result.data.reduce(function(map, obj) {
+		(spells = result.data.reduce(function(map, obj) {
 			map[obj.name] = obj;
 			console.log(obj);
 			return map;
@@ -18,7 +18,7 @@ parse("res/text/spells.csv", {
 	header: true,
 });
 
-export interface ScrollData {
+export interface Spell {
 	//Identifier
 	name: string;
 	rarity: number;
@@ -31,7 +31,6 @@ export interface ScrollData {
 	//Spell type
 	stat: Stats;
 	power: number;
-	range: number;
 
 	//Particle features
 	speed: number;
